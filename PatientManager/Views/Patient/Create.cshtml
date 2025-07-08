@@ -1,0 +1,77 @@
+﻿@using PatientManager.Core.Application.ViewModels.Patients
+@model PatientSaveViewModel
+
+@{
+    ViewData["Title"] = "Add New Patient";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-light-blue bg-gradient">
+                <h4>Create a new patient</h4>
+            </div>
+            <div class="card-body">
+                @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+
+                <form method="post" enctype="multipart/form-data" asp-controller="Patient" asp-action="Create">
+
+                    <div class="mb-3">
+                        <label asp-for="Firstname" class="form-label">First Name: </label>
+                        <input asp-for="Firstname" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Lastname" class="form-label">Last Name: </label>
+                        <input asp-for="Lastname" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Phone" class="form-label">Phone: </label>
+                        <input asp-for="Phone" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Address" class="form-label">Address: </label>
+                        <input asp-for="Address" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="IdCard" class="form-label">ID Card: </label>
+                        <input asp-for="IdCard" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="BirthDate" class="form-label">Birth Date: </label>
+                        <input asp-for="BirthDate" class="form-control" type="date" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="IsSmoker" class="form-label">Is Smoker: </label>
+                        <select asp-for="IsSmoker" class="form-select">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Allergies" class="form-label">Allergies: </label>
+                        <input asp-for="Allergies" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Photo" class="form-label">Photo: </label>
+                        <input asp-for="Photo" class="form-control" required />
+                    </div>
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="d-flex flex-row justify-content-end gap-2">
+                        <button type="submit" class="btn btn-primary-custom">Add Patient</button>
+                        <a asp-controller="Patient" asp-action="Index" class="btn btn-secondary">Go back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

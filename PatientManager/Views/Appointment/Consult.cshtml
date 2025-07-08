@@ -1,0 +1,29 @@
+﻿@using PatientManager.Core.Application.ViewModels.Appointments
+@model AppointmentConsultViewModel
+
+@{
+    ViewData["Title"] = "Consult Appointment";
+}
+
+<div class="container">
+    <h2>Consult Appointment @Model.AppointmentId</h2>
+
+    <form method="post" asp-controller="Appointment" asp-action="PerformTests">
+        <input type="hidden" asp-for="AppointmentId" />
+
+        <div class="mb-3">
+            <label for="SelectedLabTests" class="form-label">Select Laboratory Tests:</label>
+            <select asp-for="SelectedLabTests" class="form-control" multiple>
+                @foreach (var labTest in Model.LabTests)
+                {
+                    <option value="@labTest.Id">@labTest.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Perform Tests</button>
+            <a asp-controller="Appointment" asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

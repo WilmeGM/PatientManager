@@ -1,0 +1,59 @@
+﻿@using PatientManager.Core.Application.ViewModels.Doctors
+@model DoctorSaveViewModel
+
+@{
+    ViewData["Title"] = "Edit Doctor";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-light-blue bg-gradient text-light">
+                <h4>Edit Doctor</h4>
+            </div>
+            <div class="card-body">
+                @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+
+                <form method="post" enctype="multipart/form-data" asp-controller="Doctor" asp-action="Edit">
+
+                    <div class="mb-3">
+                        <label asp-for="Firstname" class="form-label">First Name: </label>
+                        <input asp-for="Firstname" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Lastname" class="form-label">Last Name: </label>
+                        <input asp-for="Lastname" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email: </label>
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Phone" class="form-label">Phone: </label>
+                        <input asp-for="Phone" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="IdCard" class="form-label">ID Card: </label>
+                        <input asp-for="IdCard" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Photo" class="form-label">Photo: </label>
+                        <input asp-for="Photo" class="form-control" />
+                    </div>
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="d-flex flex-row justify-content-end gap-2">
+                        <button type="submit" class="btn btn-primary-custom">Save Changes</button>
+                        <a asp-controller="Doctor" asp-action="Index" class="btn btn-secondary">Go back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

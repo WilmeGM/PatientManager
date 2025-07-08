@@ -1,0 +1,27 @@
+﻿@using PatientManager.Core.Application.ViewModels.LaboratoryResults
+@model LaboratoryResultViewModel
+
+@{
+    ViewData["Title"] = "Report Laboratory Result";
+}
+
+<div class="container">
+    <h2>Report Result for @Model.TestName</h2>
+
+    @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+
+    <form method="post" asp-controller="LaboratoryResult" asp-action="Report">
+        <div class="mb-3">
+            <label asp-for="Result" class="form-label">Result</label>
+            <textarea asp-for="Result" class="form-control" rows="4"></textarea>
+        </div>
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Ok</button>
+            <a asp-controller="LaboratoryResult" asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+        </div>
+    </form>
+</div>
+

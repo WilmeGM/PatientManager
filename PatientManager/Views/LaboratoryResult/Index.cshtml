@@ -1,0 +1,41 @@
+﻿@using PatientManager.Core.Application.ViewModels.LaboratoryResults
+@model List<LaboratoryResultViewModel>
+
+@{
+    ViewData["Title"] = "Pending Laboratory Results";
+}
+
+<div class="container">
+    <h2>Pending Laboratory Results</h2>
+
+    <form method="get" asp-controller="LaboratoryResult" asp-action="Index" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="patientIdCard" class="form-control" placeholder="Enter patient ID card">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>ID Card</th>
+                <th>Test Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var result in Model)
+            {
+                <tr>
+                    <td>@result.PatientName</td>
+                    <td>@result.PatientIdCard</td>
+                    <td>@result.TestName</td>
+                    <td>
+                        <a asp-controller="LaboratoryResult" asp-action="Report" asp-route-id="@result.Id" class="btn btn-primary">Report</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

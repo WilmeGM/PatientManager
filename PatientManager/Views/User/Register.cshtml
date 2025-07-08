@@ -1,0 +1,71 @@
+﻿@using PatientManager.Core.Application.ViewModels.Users
+@model SaveUserForRegister
+
+@{
+    ViewData["Title"] = "Sign in";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-light-blue bg-gradient d-flex flex-row justify-content-center">
+                <h4>Register</h4>
+            </div>
+            <div class="card-body">
+                @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+
+                <form method="post" asp-controller="User" asp-action="Register">
+                    <div class="mb-3">
+                        <label asp-for="Firstname" class="form-label">First Name: </label>
+                        <input asp-for="Firstname" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Lastname" class="form-label">Last Name: </label>
+                        <input asp-for="Lastname" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Username" class="form-label">Username: </label>
+                        <input asp-for="Username" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ConsultoryName" class="form-label">Consultory Name: </label>
+                        <input asp-for="ConsultoryName" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label">Password: </label>
+                        <input id="input-password" asp-for="Password" class="form-control" type="password">
+                    </div>
+
+                    <div class="mb-1">
+                        <label asp-for="ConfirmPassword" class="form-label">Confirm Password: </label>
+                        <input id="input-confirm-password" asp-for="ConfirmPassword" class="form-control" type="password">
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email: </label>
+                        <input asp-for="Email" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="UserType" class="form-label">User Type: </label>
+                        <input asp-for="UserType" class="form-control" value="Admin" disabled>
+                        <input type="hidden" asp-for="UserType" value="Admin" />
+                    </div>
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="d-flex flex-row justify-content-end gap-2">
+                        <button type="submit" class="btn btn-primary-custom">Sign in</button>
+                        <a asp-controller="User" asp-action="Index" class="btn btn-secondary">Go back</a>
+                    </div>
+                </form>
+
+                <p>Already have an account? <a asp-controller="User" asp-action="Index">Log in</a></p>
+            </div>
+        </div>
+    </div>
+</div>

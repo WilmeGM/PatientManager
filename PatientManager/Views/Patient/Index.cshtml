@@ -1,0 +1,75 @@
+﻿@using PatientManager.Core.Application.ViewModels.Patients
+@model List<PatientViewModel>
+
+@{
+    ViewData["Title"] = "Patient Management";
+}
+
+<div class="d-flex flex-row justify-content-center mb-3">
+    <a asp-controller="Patient" asp-action="Create" class="">
+        <i class="bi bi-plus-circle-fill btn-add" title="Add Patient"></i>
+    </a>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-dark bg-gradient">
+                    <h3 class="text-white text-center">Patient Management</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Photo</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var patient in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(patient.PhotoUrl))
+                                        {
+                                            <img src="@patient.PhotoUrl" alt="Patient Photo" style="width: 50px; height: 50px; object-fit: cover;" />
+                                        }
+                                        else
+                                        {
+                                            <span>No photo</span>
+                                        }
+                                    </td>
+                                    <td>@patient.FirstName</td>
+                                    <td>@patient.LastName</td>
+                                    <td>@patient.Phone</td>
+                                    <td>@patient.Address</td>
+                                    <td>
+                                        <div class="d-flex flex-row gap-4">
+                                            <a asp-controller="Patient" asp-action="Edit" asp-route-id="@patient.Id">
+                                                <i class="bi bi-pencil-square btn-edit" title="Edit"></i>
+                                            </a>
+                                            <a asp-controller="Patient" asp-action="Remove" asp-route-id="@patient.Id">
+                                                <i class="bi bi-trash3-fill btn-remove" title="Remove"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                            @if (!Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="6" class="text-center">No patients available</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@using PatientManager.Core.Application.ViewModels.LaboratoryTests
+@model List<LaboratoryTestViewModel>
+
+@{
+    ViewData["Title"] = "Laboratory Test Management";
+}
+
+<div class="d-flex flex-row justify-content-center mb-3">
+    <a asp-controller="LaboratoryTest" asp-action="Create" class="">
+        <i class="bi bi-plus-circle-fill btn-add" title="Add Test"></i>
+    </a>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-light-blue bg-gradient">
+                    <h3 class="text-white text-center">Laboratory Test Management</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Test Name</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var test in Model)
+                            {
+                                <tr>
+                                    <td>@test.Name</td>
+                                    <td>
+                                        <div class="d-flex flex-row gap-4">
+                                            <a asp-controller="LaboratoryTest" asp-action="Edit" asp-route-id="@test.Id" class="">
+                                                <i class="bi bi-pencil-square btn-edit" title="Edit"></i>
+                                            </a>
+                                            <a asp-controller="LaboratoryTest" asp-action="Remove" asp-route-id="@test.Id" class="">
+                                                <i class="bi bi-trash3-fill btn-remove" title="Remove"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                            @if (!Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="2" class="text-center">No laboratory tests available</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

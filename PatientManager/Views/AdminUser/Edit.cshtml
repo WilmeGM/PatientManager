@@ -1,0 +1,67 @@
+﻿@using PatientManager.Core.Application.ViewModels.Users
+@model SaveUserForEdition
+
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-light-blue bg-gradient text-light">
+                <h4>Editing User</h4>
+            </div>
+            <div class="card-body">
+                @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+
+                <form method="post" asp-controller="AdminUser" asp-action="Edit">
+
+                    <div class="mb-3">
+                        <label asp-for="Firstname" class="form-label">First Name: </label>
+                        <input type="text" asp-for="Firstname" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Lastname" class="form-label">Last Name: </label>
+                        <input type="text" asp-for="Lastname" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email: </label>
+                        <input type="email" asp-for="Email" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Username" class="form-label">Username: </label>
+                        <input type="text" asp-for="Username" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label">New Password (leave blank to keep current): </label>
+                        <input asp-for="Password" class="form-control" type="password" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ConfirmPassword" class="form-label">Confirm Password: </label>
+                        <input asp-for="ConfirmPassword" class="form-control" type="password" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="UserType" class="form-label">User Type: </label>
+                        <select asp-for="UserType" class="form-control">
+                            <option value="Admin">Admin</option>
+                            <option value="Assistant">Assistant</option>
+                        </select>
+                    </div>
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="d-flex flex-row justify-content-end gap-2">
+                        <button type="submit" class="btn btn-primary-custom">Save Changes</button>
+                        <a asp-controller="AdminUser" asp-action="Index" class="btn btn-secondary">Go back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

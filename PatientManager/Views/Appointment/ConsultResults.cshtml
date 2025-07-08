@@ -1,0 +1,36 @@
+﻿@using PatientManager.Core.Application.ViewModels.Appointments
+@model AppointmentResultsViewModel
+
+@{
+    ViewData["Title"] = "Consult Results";
+}
+
+<div class="container">
+    <h2>Results for Appointment @Model.AppointmentId</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Test Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var labResult in Model.LabResults)
+            {
+                <tr>
+                    <td>@labResult.Name</td>
+                    <td>@(labResult.IsCompleted ? "Completed" : "Pending")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <form method="post" asp-controller="Appointment" asp-action="CompleteAppointment">
+        <input type="hidden" asp-for="AppointmentId" />
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-success">Complete Appointment</button>
+            <a asp-controller="Appointment" asp-action="Index" class="btn btn-secondary">Go back</a>
+        </div>
+    </form>
+</div>

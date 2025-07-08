@@ -1,0 +1,66 @@
+﻿@using PatientManager.Core.Application.ViewModels.Appointments
+@model AppointmentSaveViewModel
+
+@{
+    ViewData["Title"] = "Add New Appointment";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-light-blue bg-gradient">
+                <h4>Create a new appointment</h4>
+            </div>
+            <div class="card-body">
+                @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+
+                <form method="post" asp-controller="Appointment" asp-action="Create">
+
+                    <div class="mb-3">
+                        <label asp-for="PatientId" class="form-label">Select Patient: </label>
+                        <select asp-for="PatientId" class="form-control">
+                            <option value="">Please select a patient</option>
+                            @foreach (var patient in Model.Patients)
+                            {
+                                <option value="@patient.Id">@patient.FirstName @patient.LastName</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="DoctorId" class="form-label">Select Doctor: </label>
+                        <select asp-for="DoctorId" class="form-control">
+                            <option value="">Please select a doctor</option>
+                            @foreach (var doctor in Model.Doctors)
+                            {
+                                <option value="@doctor.Id">@doctor.FirstName @doctor.LastName</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="AppointmentDate" class="form-label">Appointment Date: </label>
+                        <input asp-for="AppointmentDate" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="AppointmentTime" class="form-label">Appointment Time: </label>
+                        <input asp-for="AppointmentTime" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Reason" class="form-label">Reason: </label>
+                        <input asp-for="Reason" class="form-control" />
+                    </div>
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="d-flex flex-row justify-content-end gap-2">
+                        <button type="submit" class="btn btn-primary-custom">Create Appointment</button>
+                        <a asp-controller="Appointment" asp-action="Index" class="btn btn-secondary">Go back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

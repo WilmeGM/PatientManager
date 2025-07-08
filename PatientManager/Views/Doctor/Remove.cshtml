@@ -1,0 +1,27 @@
+﻿@using PatientManager.Core.Application.ViewModels.Doctors
+@model DoctorSaveViewModel
+
+@{
+    ViewData["Title"] = "Remove Doctor";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-danger-custom bg-gradient">
+                <h4>Are you sure you want to remove Dr. @Model.Firstname @Model.Lastname?</h4>
+            </div>
+            <div class="card-body">
+                @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+
+                <form method="post" asp-controller="Doctor" asp-action="RemoveConfirmed">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-flex flex-row justify-content-end gap-2">
+                        <button type="submit" class="btn btn-success">Yes</button>
+                        <a asp-controller="Doctor" asp-action="Index" class="btn btn-secondary">No</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

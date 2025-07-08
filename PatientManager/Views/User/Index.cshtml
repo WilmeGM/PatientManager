@@ -1,0 +1,55 @@
+﻿@using PatientManager.Core.Application.ViewModels.Users
+@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="row mt-5">
+    <div class="col-4 offset-4">
+        <div class="card">
+            <div class="card-header bg-light-blue bg-gradient">
+                <h4 class="text-center">Login</h4>
+            </div>
+            <div class="card-body">
+
+                @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+
+                <form method="post" asp-controller="User" asp-action="Index">
+
+                    <div class="mb-3">
+                        <label asp-for="Username" class="form-label">Username: </label>
+                        <input asp-for="Username" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label">Password: </label>
+                        <input id="input-password" asp-for="Password" class="form-control" type="password" />
+                    </div>
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" type="submit">Log in</button>
+                    </div>
+                </form>
+
+                <div class="d-flex flex-row justify-content-end mt-3 mb-0">
+                    <p class="m-0"><a asp-controller="User" asp-action="Register">Sign in</a> if you do not have an account yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["Errors"] != null)
+{
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Validation Errors',
+            html: '@string.Join("<br>", TempData["Errors"] as List<string>)'
+        });
+    </script>
+}
+
