@@ -47,7 +47,7 @@ This project aims to:
 1. Clone the repository  
    `git clone https://github.com/WilmeGM/PatientManager.git`
 
-2. Configure the database in `appsettings.example.Developmentjson` or create your own based on.
+2. Configure the database in `appsettings.example.Development.json` or create your own based on.
 
 3. Apply migrations  
    `dotnet ef database update`
